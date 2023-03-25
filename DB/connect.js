@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
-export const connect =  (url)=>{
+const connect = (url)=>{
     return mongoose.connect(url)
 };
+
+module.exports = connect

@@ -1,15 +1,15 @@
 const jswt = require('jsonwebtoken')
 
-export const createjwt = ({payload})=>{
+const createjwt = ({payload})=>{
     const token = jswt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_LIFETIME
     });
     return token
 };
 
-export const isTokenValid = ({token})=> jswt.verify(token, process.env.JWT_SECRET)
+const isTokenValid = ({token})=> jswt.verify(token, process.env.JWT_SECRET)
 
-export const attachCookiesToResponse = ({res, user})=>{
+const attachCookiesToResponse = ({res, user})=>{
     const token = createjwt({payload:user})
     const oneDay = 1000 * 60 * 60 * 24
     
@@ -20,3 +20,5 @@ export const attachCookiesToResponse = ({res, user})=>{
         signed: true
     })
 };
+
+module.exports = {createjwt, isTokenValid, attachCookiesToResponse}

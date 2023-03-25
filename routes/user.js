@@ -10,4 +10,3 @@ router.route('/updateUserPassword').patch(authenticateUser, updateUserPassword);
 router.route('/:id').get(authenticateUser, getSingleUser);
 
 module.exports = router
-

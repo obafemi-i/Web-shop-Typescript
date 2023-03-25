@@ -45,7 +45,7 @@ app.use('/api/v1/users', userRouter)
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 4500
+const port = process.env.PORT || 5000
 
 const start = async (req,res) =>{
     try {
@@ -54,6 +54,6 @@ const start = async (req,res) =>{
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 start();

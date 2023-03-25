@@ -3,13 +3,13 @@ const status = require('http-status-codes')
 const customError = require('../errors')
 const tokenize = require('../utils')
 
-export const getAllUsers = async (req,res)=>{
+const getAllUsers = async (req,res)=>{
     console.log(req.user);
     const users = await User.find({role: 'user'}).select('-password')
     res.status(status.StatusCodes.OK).json({ users })
 };
 
-export const getSingleUser = async(req,res)=>{
+const getSingleUser = async(req,res)=>{
     const user = await User.findOne({ _id:req.params.id }).select('-password')
     if (!user){
         throw new customError.NotFoundError(`No user with id: ${req.params.id}`)
@@ -18,11 +18,11 @@ export const getSingleUser = async(req,res)=>{
     res.status(status.StatusCodes.OK). json({user})
 };
 
-export const showCurrentUser = async(req, res)=>{
+const showCurrentUser = async(req, res)=>{
     res.status(status.StatusCodes.OK).json({ user: req.user})
 };
 
-export const updateUser = async(req,res)=>{
+const updateUser = async(req,res)=>{
     const { email, name } = req.body
     if (! email || ! name){
         throw new customError.BadRequestError(`Please provide all values`)
@@ -39,7 +39,7 @@ export const updateUser = async(req,res)=>{
     res.status(status.StatusCodes.OK).json({ user: tokenUser})
 };
 
-export const updateUserPassword = async(req, res)=>{
+const updateUserPassword = async(req, res)=>{
     const {oldPassword, newPassword} = req.body
     if(!oldPassword || newPassword){
         throw new customError.BadRequestError('Please provide both values')
@@ -56,3 +56,11 @@ export const updateUserPassword = async(req, res)=>{
 
     res.status(status.StatusCodes.OK).json({ msg: 'Password successfully updated!'})
 };
+
+module.exports = {
+    getAllUsers,
+    getSingleUser,
+    showCurrentUser,
+    updateUser,
+    updateUserPassword
+}

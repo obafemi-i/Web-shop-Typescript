@@ -36,6 +36,7 @@ const updateUser = async(req,res)=>{
 
     const tokenUser = tokenize.createTokenUser(user)
     tokenize.attachCookiesToResponse({ res, user:tokenUser})
+
     res.status(status.StatusCodes.OK).json({ user: tokenUser})
 };
 
@@ -63,4 +64,4 @@ module.exports = {
     showCurrentUser,
     updateUser,
     updateUserPassword
-}
+};

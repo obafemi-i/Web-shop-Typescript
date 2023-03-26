@@ -1,5 +1,5 @@
 class CustomAPIError extends Error {
-    constructor(nessage) {
+    constructor(message) {
         super(message)
     }
 };

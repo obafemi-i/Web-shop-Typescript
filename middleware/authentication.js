@@ -6,7 +6,7 @@ const authenticateUser = async (req,res,next) =>{
     console.log(req.signedCookies);
 
     if (!token) {
-        throw new customError.UnauthenticatedError( 'Authentication failed.')
+        throw new customError.UnauthenticatedError( 'Authentication failed, no token.')
     }
 
     try {

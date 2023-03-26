@@ -21,4 +21,4 @@ const attachCookiesToResponse = ({res, user})=>{
     })
 };
 
-module.exports = {createjwt, isTokenValid, attachCookiesToResponse}
+module.exports = {createjwt, isTokenValid, attachCookiesToResponse};

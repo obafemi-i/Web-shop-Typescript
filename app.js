@@ -16,7 +16,9 @@ const mongoSanitize = require('express-mongo-sanitize')
 // connect DB
 const connectDB = require('./DB/connect')
 
+const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
+const productRouter = require('./routes/product')
 
 const notFoundMiddleware = require('./middleware/not_found')
 const errorHandlerMiddleware = require('./middleware/error_handler')
@@ -39,13 +41,14 @@ app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.static('./public'))
 app.use(fileUpload())
 
-
+app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/products', productRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 9000
 
 const start = async (req,res) =>{
     try {

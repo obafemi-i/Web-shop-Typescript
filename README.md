@@ -1,4 +1,4 @@
-# Web-shop-Typescript
+# Web-shop-api
 
 
 #### Setup Basic Express Server

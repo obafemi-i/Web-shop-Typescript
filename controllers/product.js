@@ -1,4 +1,4 @@
-const Product = require('../models/products')
+const Product = require('../models/product')
 const status = require('http-status-codes')
 const customError = require('../errors')
 const path = require('path')

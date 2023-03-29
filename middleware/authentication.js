@@ -2,8 +2,8 @@ const customError = require('../errors')
 const {isTokenValid} = require('../utils')
 
 const authenticateUser = async (req,res,next) =>{
+    // console.log(req.signedCookies);
     const token = req.signedCookies.token
-    console.log(req.signedCookies);
 
     if (!token) {
         throw new customError.UnauthenticatedError( 'Authentication failed, no token.')
@@ -12,6 +12,7 @@ const authenticateUser = async (req,res,next) =>{
     try {
         const { name, userId, role} = isTokenValid({ token })
         req.user = ( name, userId, role )
+        // console.log(req.user.name);
         next()
     } catch (error) {
         throw new customError.UnauthenticatedError('Authentication failed')
@@ -20,10 +21,11 @@ const authenticateUser = async (req,res,next) =>{
 
 const authorizePermissions = (...roles) =>{
     return (req,res,next) =>{
-        if(!roles.includes(req.user.role)) {
-            throw new customError.Unauthorizederror('Unauthorized to access this route')
-        }
-        next()
+        // console.log(`current user be: ${req.user}`);
+        if(!roles.includes(req.user)) {
+                    throw new customError.Unauthorizederror('Unauthorized to access this route')
+                }
+            next()
     }
 };
 

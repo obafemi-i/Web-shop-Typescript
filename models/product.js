@@ -62,7 +62,7 @@ const productSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Types.ObjectId,
-        ref: 'user',
+        ref: 'User',
         required: true
     }
 },{timestamps: true, toJSON: {virtuals: true}, toObject: { virtuals: true}});
